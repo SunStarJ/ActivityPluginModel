@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="header"
+            type="com.sunstar.activityplugin.vm.HeadVm"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/body_view"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:id="@+id/base_tool_bar"
+            android:background="?attr/colorPrimary"
+            android:layout_height="?android:attr/actionBarSize">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_text"
+                android:layout_gravity="center"
+                android:text="@{header.headerName}"/>
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
+</layout>
