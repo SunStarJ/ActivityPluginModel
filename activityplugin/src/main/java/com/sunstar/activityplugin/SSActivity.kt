@@ -28,10 +28,11 @@ abstract class SSActivity : AppCompatActivity() {
         if (headerModel.isBackShow && headerModel.backImgResource != -1) {
             base_tool_bar.navigationIcon = mContext.resources.getDrawable(headerModel.backImgResource)
         }
+
+        setSupportActionBar(base_tool_bar)
         base_tool_bar.setNavigationOnClickListener {
             finish()
         }
-        setSupportActionBar(base_tool_bar)
         viewInitComplete()
         setTitleText()
     }
