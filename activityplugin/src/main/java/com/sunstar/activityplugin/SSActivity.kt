@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.sunstar.activityplugin.vm.HeadVm
 import com.sunstar.activityplugin.databinding.SsLayoutBinding
 import kotlinx.android.synthetic.main.ss_layout.*
@@ -42,6 +43,8 @@ abstract class SSActivity : AppCompatActivity() {
         title_text.textSize = 18f
         title_text.typeface = Typeface.DEFAULT_BOLD
     }
+
+    fun getTitleText():TextView = title_text
 
     fun hiddenTitleBar(){
         supportActionBar!!.hide()
