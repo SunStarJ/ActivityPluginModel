@@ -31,7 +31,7 @@ abstract class SSActivity : AppCompatActivity() {
 
         setSupportActionBar(base_tool_bar)
         base_tool_bar.setNavigationOnClickListener {
-            finish()
+            backClick()
         }
         viewInitComplete()
         setTitleText()
@@ -52,7 +52,7 @@ abstract class SSActivity : AppCompatActivity() {
     }
 
     open fun backClick() {
-        finish()
+        super.onBackPressed()
     }
     abstract fun viewInitComplete()
     abstract fun initView(): View
