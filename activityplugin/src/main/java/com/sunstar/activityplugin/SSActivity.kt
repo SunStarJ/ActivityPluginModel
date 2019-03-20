@@ -47,6 +47,14 @@ abstract class SSActivity : AppCompatActivity() {
 
     fun getTitleText():TextView = title_text
 
+    fun changeText(titleName:String){
+        title_text.text = titleName
+    }
+
+    fun showTittleBar(){
+        supportActionBar!!.show()
+    }
+
     fun hiddenTitleBar(){
         supportActionBar!!.hide()
     }
