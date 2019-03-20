@@ -34,8 +34,9 @@ abstract class SSActivity : AppCompatActivity() {
         base_tool_bar.setNavigationOnClickListener {
             backClick()
         }
-        viewInitComplete()
         setTitleText()
+        viewInitComplete()
+
     }
 
     private fun setTitleText() {
