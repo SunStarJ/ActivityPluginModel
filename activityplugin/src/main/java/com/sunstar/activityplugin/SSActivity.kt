@@ -16,12 +16,14 @@ import kotlinx.android.synthetic.main.ss_layout.*
 
 abstract class SSActivity : AppCompatActivity() {
     lateinit var mContext: Context
+    private lateinit var headerModel: HeadVm
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
         var ssBinding = DataBindingUtil.inflate<SsLayoutBinding>(LayoutInflater.from(mContext), R.layout.ss_layout, null, false)
         var vm = HeadVm("测试", true)
-        var headerModel = initHeadModel()
+        headerModel = initHeadModel()
         ssBinding.header = headerModel
         setContentView(ssBinding.root)
         ssBinding.root.findViewById<LinearLayout>(R.id.body_view).addView(initView(),LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
@@ -48,7 +50,8 @@ abstract class SSActivity : AppCompatActivity() {
     fun getTitleText():TextView = title_text
 
     fun changeText(titleName:String){
-        title_text.text = titleName
+        headerModel.headerName = titleName
+        headerModel.notifyChange()
     }
 
     fun showTittleBar(){
