@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.ss_layout.*
 abstract class SSActivity : AppCompatActivity() {
     lateinit var mContext: Context
     private lateinit var headerModel: HeadVm
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
@@ -25,9 +26,7 @@ abstract class SSActivity : AppCompatActivity() {
         headerModel = initHeadModel()
         ssBinding.header = headerModel
         setContentView(ssBinding.root)
-        addHeadView()?.let { ssBinding.root.findViewById<LinearLayout>(R.id.body_view).addView(it,LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT) }
         ssBinding.root.findViewById<LinearLayout>(R.id.body_view).addView(initView(),LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
-        addFootView()?.let { ssBinding.root.findViewById<LinearLayout>(R.id.body_view).addView(it,LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT) }
         base_tool_bar.title = ""
         if (headerModel.isBackShow && headerModel.backImgResource != -1) {
             base_tool_bar.navigationIcon = mContext.resources.getDrawable(headerModel.backImgResource)
@@ -41,12 +40,6 @@ abstract class SSActivity : AppCompatActivity() {
         viewInitComplete()
 
     }
-
-    fun getScrollView() = base_scrollview
-
-    open fun addFootView(): View? = null
-
-    open fun addHeadView(): View? = null
 
     private fun setTitleText() {
         title_text.setTextColor(mContext.resources.getColor(R.color.primary_material_light))
