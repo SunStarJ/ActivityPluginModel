@@ -38,6 +38,10 @@ abstract class SSActivity : AppCompatActivity() {
         }
         setTitleText()
         viewInitComplete()
+        initInstanceStateOtherCode(savedInstanceState)
+    }
+
+    open fun initInstanceStateOtherCode(savedInstanceState: Bundle?) {
 
     }
 
