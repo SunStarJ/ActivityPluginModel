@@ -1,6 +1,8 @@
 package com.sunstar.activityplugin
 
+import android.app.Activity
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.databinding.DataBindingUtil
 import android.graphics.Typeface
 import android.os.Bundle
@@ -23,6 +25,7 @@ abstract class SSActivity : AppCompatActivity() {
         mContext = this
         var ssBinding = DataBindingUtil.inflate<SsLayoutBinding>(LayoutInflater.from(mContext), R.layout.ss_layout, null, false)
         var vm = HeadVm("测试", true)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         headerModel = initHeadModel()
         ssBinding.header = headerModel
         setContentView(ssBinding.root)
