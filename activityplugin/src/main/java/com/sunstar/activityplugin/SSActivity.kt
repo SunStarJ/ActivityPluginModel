@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.ss_layout.*
 abstract class SSActivity : AppCompatActivity() {
     lateinit var mContext: Context
     private lateinit var headerModel: HeadVm
-
+    var bodyView: LinearLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
@@ -29,7 +29,8 @@ abstract class SSActivity : AppCompatActivity() {
         headerModel = initHeadModel()
         ssBinding.header = headerModel
         setContentView(ssBinding.root)
-        ssBinding.root.findViewById<LinearLayout>(R.id.body_view).addView(initView(),LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+        bodyView = ssBinding.root.findViewById<LinearLayout>(R.id.body_view)
+        ssBinding.root.findViewById<LinearLayout>(R.id.body_view).addView(initView(), LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
         base_tool_bar.title = ""
         if (headerModel.isBackShow && headerModel.backImgResource != -1) {
             base_tool_bar.navigationIcon = mContext.resources.getDrawable(headerModel.backImgResource)
@@ -44,6 +45,8 @@ abstract class SSActivity : AppCompatActivity() {
         initInstanceStateOtherCode(savedInstanceState)
     }
 
+    fun getWindowView(): LinearLayout? = bodyView
+
     open fun initInstanceStateOtherCode(savedInstanceState: Bundle?) {
 
     }
@@ -54,28 +57,29 @@ abstract class SSActivity : AppCompatActivity() {
         title_text.typeface = Typeface.DEFAULT_BOLD
     }
 
-    fun getTitleText():TextView = title_text
+    fun getTitleText(): TextView = title_text
 
-    fun changeText(titleName:String){
+    fun changeText(titleName: String) {
         headerModel.headerName = titleName
         headerModel.notifyChange()
     }
 
-    fun showTittleBar(){
+    fun showTittleBar() {
         supportActionBar!!.show()
     }
 
-    fun hiddenTitleBar(){
+    fun hiddenTitleBar() {
         supportActionBar!!.hide()
     }
 
-    open fun setTitleBackGround(backgroundResource:Int){
+    open fun setTitleBackGround(backgroundResource: Int) {
         supportActionBar!!.setBackgroundDrawable(mContext.resources.getDrawable(backgroundResource))
     }
 
     open fun backClick() {
         super.onBackPressed()
     }
+
     abstract fun viewInitComplete()
     abstract fun initView(): View
     abstract fun initHeadModel(): HeadVm
